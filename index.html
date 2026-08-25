@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Climbora — Persewaan Alat Pendakian</title>
+<link rel="stylesheet" href="css/style.css?v=10">
+</head>
+<body>
+
+<header class="topbar" id="topbar" style="display:none;">
+  <div class="topbar-left">
+    <button type="button" class="btn-back" id="btn-back" aria-label="Kembali">‹</button>
+    <button type="button" class="brand" data-nav="katalog">CLIMBORA</button>
+  </div>
+  <nav class="topbar-nav">
+    <button type="button" data-nav="katalog">Katalog</button>
+    <button type="button" data-nav="tiket">Tiket Saya</button>
+  </nav>
+  <div class="topbar-user" id="user-label"></div>
+</header>
+
+<main id="app">
+
+  <!-- ===== DAFTAR (buat akun baru) ===== -->
+  <section class="page active" id="page-daftar">
+    <div class="login-wrap">
+      <div class="login-card panel">
+        <div class="brand">CLIMBORA</div>
+        <p class="login-tag">Persewaan Alat Pendakian Terpercaya</p>
+        <form id="daftar-form">
+          <div class="field">
+            <label for="daftar-nama">Nama Lengkap</label>
+            <input type="text" id="daftar-nama" placeholder="mis. Dian Prasetya" required>
+          </div>
+          <div class="field">
+            <label for="daftar-email">Email</label>
+            <input type="email" id="daftar-email" placeholder="nama@email.com" required>
+          </div>
+          <div class="field">
+            <label for="daftar-password">Kata Sandi</label>
+            <input type="password" id="daftar-password" placeholder="••••••••" required>
+          </div>
+          <p class="error-msg" id="daftar-error"></p>
+          <button type="submit" class="btn btn-primary btn-block">Daftar & Mulai Sewa</button>
+        </form>
+        <p class="login-switch">Sudah punya akun? <a href="#" id="ke-masuk-link">Masuk di sini</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== MASUK (akun sudah ada) ===== -->
+  <section class="page" id="page-masuk">
+    <div class="login-wrap">
+      <div class="login-card panel">
+        <div class="brand">CLIMBORA</div>
+        <p class="login-tag">Persewaan Alat Pendakian Terpercaya</p>
+        <form id="masuk-form">
+          <div class="field">
+            <label for="masuk-email">Email</label>
+            <input type="email" id="masuk-email" placeholder="nama@email.com" required>
+          </div>
+          <div class="field">
+            <label for="masuk-password">Kata Sandi</label>
+            <input type="password" id="masuk-password" placeholder="••••••••" required>
+          </div>
+          <p class="error-msg" id="masuk-error"></p>
+          <button type="submit" class="btn btn-primary btn-block">Masuk & Mulai Sewa</button>
+        </form>
+        <p class="login-switch">Belum punya akun? <a href="#" id="ke-daftar-link">Daftar di sini</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== KATALOG ===== -->
+  <section class="page" id="page-katalog">
+    <section class="hero">
+      <svg class="contours" viewBox="0 0 800 300" preserveAspectRatio="none">
+        <polygon points="0,300 0,210 110,120 170,190 260,90 340,180 430,60 520,190 600,110 680,200 760,140 800,210 800,300" fill="#20374F"/>
+        <polygon points="0,300 0,250 90,190 190,240 300,150 400,230 500,140 610,230 700,170 800,240 800,300" fill="#182B3D"/>
+        <path d="M0,205 L110,116 L170,186 L260,86 L340,176 L430,56 L520,186 L600,106 L680,196 L760,136 L800,206" fill="none" stroke="#E3A93E" stroke-width="1.5" stroke-dasharray="6 5" opacity=".8"/>
+      </svg>
+      <div class="hero-inner">
+        <p class="eyebrow">Jalur terbuka, perlengkapan siap</p>
+        <h1>Sewa Alat Pendakian, Naik Gunung Tanpa Beban Beli</h1>
+        <p>Semua unit dicek kondisinya sebelum berangkat. Pilih alat, tentukan lama sewa, dan langsung bayar online.</p>
+      </div>
+    </section>
+
+    <div class="container">
+      <h2 class="section-title">Katalog Perlengkapan</h2>
+
+      <div class="filter-chips" id="filter-chips">
+        <button type="button" class="chip active" data-cat="Semua">Semua</button>
+        <button type="button" class="chip" data-cat="Aksesori">Aksesori</button>
+        <button type="button" class="chip" data-cat="Camping">Camping</button>
+        <button type="button" class="chip" data-cat="Tas">Tas</button>
+        <button type="button" class="chip" data-cat="Masak">Masak</button>
+        <button type="button" class="chip" data-cat="Pakaian">Pakaian</button>
+      </div>
+
+      <div class="grid" id="catalog-grid">
+
+        <article class="card" data-id="pole" data-cat="Aksesori" data-name="Trekking Pole (sepasang)" data-price="15000" data-unit="hari">
+          <img class="card-img" src="images/trekpol.jpg" alt="Trekking Pole (sepasang)" loading="lazy">
+          <div class="card-body">
+            <span class="card-tag">Aksesori</span>
+            <h3>Trekking Pole (sepasang)</h3>
+            <p class="desc">Tongkat aluminium anti-slip, tinggi dapat diatur 65–135cm.</p>
+            <p class="card-stock">● Tersedia</p>
+            <div class="card-price"><span class="amount">Rp15.000</span><span class="unit">/ hari / unit</span></div>
+            <button type="button" class="btn btn-primary btn-block" data-order="pole">Pesan Sekarang</button>
+          </div>
+        </article>
+
+        <article class="card" data-id="tenda" data-cat="Camping" data-name="Tenda Dome 4 Orang" data-price="45000" data-unit="hari">
+          <img class="card-img" src="images/tenda.jpg" alt="Tenda Dome 4 Orang" loading="lazy">
+          <div class="card-body">
+            <span class="card-tag">Camping</span>
+            <h3>Tenda Dome 4 Orang</h3>
+            <p class="desc">Double layer, tahan angin & hujan, muat 4 orang + logistik.</p>
+            <p class="card-stock">● Tersedia</p>
+            <div class="card-price"><span class="amount">Rp45.000</span><span class="unit">/ hari / unit</span></div>
+            <button type="button" class="btn btn-primary btn-block" data-order="tenda">Pesan Sekarang</button>
+          </div>
+        </article>
+
+        <article class="card" data-id="carrier" data-cat="Tas" data-name="Carrier 60L" data-price="25000" data-unit="hari">
+          <img class="card-img" src="images/carrier.jpg" alt="Carrier 60L" loading="lazy">
+          <div class="card-body">
+            <span class="card-tag">Tas</span>
+            <h3>Carrier 60L</h3>
+            <p class="desc">Tas gunung ergonomis dengan rain cover bawaan.</p>
+            <p class="card-stock">● Tersedia</p>
+            <div class="card-price"><span class="amount">Rp25.000</span><span class="unit">/ hari / unit</span></div>
+            <button type="button" class="btn btn-primary btn-block" data-order="carrier">Pesan Sekarang</button>
+          </div>
+        </article>
+
+        <article class="card" data-id="sleep" data-cat="Camping" data-name="Sleeping Bag" data-price="15000" data-unit="hari">
+          <img class="card-img" src="images/sleepbag.jpg" alt="Sleeping Bag" loading="lazy">
+          <div class="card-body">
+            <span class="card-tag">Camping</span>
+            <h3>Sleeping Bag</h3>
+            <p class="desc">Nyaman hingga suhu 10°C, ringan dan mudah dilipat.</p>
+            <p class="card-stock">● Tersedia</p>
+            <div class="card-price"><span class="amount">Rp15.000</span><span class="unit">/ hari / unit</span></div>
+            <button type="button" class="btn btn-primary btn-block" data-order="sleep">Pesan Sekarang</button>
+          </div>
+        </article>
+
+        <article class="card" data-id="kompor" data-cat="Masak" data-name="Kompor Portable + Gas" data-price="25000" data-unit="hari">
+          <img class="card-img" src="images/kompor.jpg" alt="Kompor Portable + Gas" loading="lazy">
+          <div class="card-body">
+            <span class="card-tag">Masak</span>
+            <h3>Kompor Portable + Gas</h3>
+            <p class="desc">Kompor lipat + 1 tabung gas kecil, cocok untuk masak di trek.</p>
+            <p class="card-stock">● Tersedia</p>
+            <div class="card-price"><span class="amount">Rp25.000</span><span class="unit">/ hari / unit</span></div>
+            <button type="button" class="btn btn-primary btn-block" data-order="kompor">Pesan Sekarang</button>
+          </div>
+        </article>
+
+        <article class="card" data-id="matras" data-cat="Camping" data-name="Matras Camping" data-price="10000" data-unit="hari">
+          <img class="card-img" src="images/matras.jpg" alt="Matras Camping" loading="lazy">
+          <div class="card-body">
+            <span class="card-tag">Camping</span>
+            <h3>Matras Camping</h3>
+            <p class="desc">Matras foam ringan, isolasi dari tanah dingin.</p>
+            <p class="card-stock">● Tersedia</p>
+            <div class="card-price"><span class="amount">Rp10.000</span><span class="unit">/ hari / unit</span></div>
+            <button type="button" class="btn btn-primary btn-block" data-order="matras">Pesan Sekarang</button>
+          </div>
+        </article>
+
+        <article class="card" data-id="jaket" data-cat="Pakaian" data-name="Jaket Gunung Waterproof" data-price="15000" data-unit="hari">
+          <img class="card-img" src="images/jaket.jpg" alt="Jaket Gunung Waterproof" loading="lazy">
+          <div class="card-body">
+            <span class="card-tag">Pakaian</span>
+            <h3>Jaket Gunung Waterproof</h3>
+            <p class="desc">Tahan angin & air, cocok untuk suhu dingin di ketinggian.</p>
+            <p class="card-stock">● Tersedia</p>
+            <div class="card-price"><span class="amount">Rp15.000</span><span class="unit">/ hari / unit</span></div>
+            <button type="button" class="btn btn-primary btn-block" data-order="jaket">Pesan Sekarang</button>
+          </div>
+        </article>
+
+        <article class="card" data-id="sepatu" data-cat="Pakaian" data-name="Sepatu Gunung (Hiking Boots)" data-price="25000" data-unit="hari">
+          <img class="card-img" src="images/sepatu.jpg" alt="Sepatu Gunung (Hiking Boots)" loading="lazy">
+          <div class="card-body">
+            <span class="card-tag">Pakaian</span>
+            <h3>Sepatu Gunung (Hiking Boots)</h3>
+            <p class="desc">Sol anti-selip, ankle support kuat untuk medan berbatu.</p>
+            <p class="card-stock">● Tersedia</p>
+            <div class="card-price"><span class="amount">Rp25.000</span><span class="unit">/ hari / unit</span></div>
+            <button type="button" class="btn btn-primary btn-block" data-order="sepatu">Pesan Sekarang</button>
+          </div>
+        </article>
+
+      </div>
+    </div>
+
+    <footer>© Climbora — Sewa Alat Pendakian. Semua unit diperiksa sebelum & sesudah pemakaian.</footer>
+  </section>
+
+  <!-- ===== BOOKING ===== -->
+  <section class="page" id="page-booking">
+    <div class="container" id="booking-wrap" style="padding-top:32px;padding-bottom:60px;">
+      <div class="summary-card">
+        <img id="sum-img" src="" alt="">
+        <div class="info">
+          <h4 id="sum-name"></h4>
+          <p id="sum-price"></p>
+        </div>
+      </div>
+
+      <div class="panel">
+        <form id="booking-form">
+          <div class="field">
+            <label for="nama-booking">Nama Lengkap</label>
+            <input type="text" id="nama-booking" placeholder="Nama sesuai KTP" required>
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label for="hp">No. HP / WhatsApp</label>
+              <input type="tel" id="hp" placeholder="08xxxxxxxxxx" required>
+            </div>
+            <div class="field">
+              <label for="email-booking">Email</label>
+              <input type="email" id="email-booking" placeholder="nama@email.com" required>
+            </div>
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label for="tanggal">Tanggal Ambil</label>
+              <input type="date" id="tanggal" required>
+            </div>
+            <div class="field">
+              <label for="qty">Jumlah Unit</label>
+              <input type="number" id="qty" min="1" value="1" required>
+            </div>
+          </div>
+          <div class="field">
+            <label for="days">Lama Sewa (hari)</label>
+            <input type="number" id="days" min="1" value="1" required>
+          </div>
+
+          <div class="price-box">
+            <div class="price-row"><span>Subtotal sewa</span><span id="sub-amount">Rp0</span></div>
+            <div class="price-row total"><span>Total Bayar</span><span id="total-amount">Rp0</span></div>
+          </div>
+
+          <p class="error-msg" id="booking-error"></p>
+          <button type="submit" class="btn btn-primary btn-block">Lanjut ke Pembayaran</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PEMBAYARAN ===== -->
+  <section class="page" id="page-pembayaran">
+    <div class="container" id="pay-wrap" style="padding-top:32px;padding-bottom:60px;max-width:520px;">
+      <div class="price-box">
+        <div class="price-row"><span id="pay-item"></span><span id="pay-detail"></span></div>
+        <div class="price-row total"><span>Total Tagihan</span><span id="pay-total"></span></div>
+      </div>
+
+      <div class="panel" style="max-width:100%;">
+        <h3 style="font-family:var(--font-display);margin-bottom:16px;">Pembayaran QRIS</h3>
+        <div class="qris-box">
+          <div id="qris-code"></div>
+          <p class="qris-note">Scan kode QR di atas pakai aplikasi m-banking atau e-wallet apa pun (GoPay, OVO, DANA, ShopeePay, LinkAja, dll).</p>
+        </div>
+        <p class="error-msg" id="pay-error"></p>
+        <button type="button" id="confirm-pay-btn" class="btn btn-primary btn-block">Konfirmasi Pembayaran</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== STRUK ===== -->
+  <section class="page" id="page-struk">
+    <div class="container" id="struk-wrap" style="padding-top:32px;padding-bottom:60px;text-align:center;">
+      <div class="gateway-badge"><span class="dot"></span> Diverifikasi oleh SecurePay Gateway</div>
+
+      <div class="receipt">
+        <div class="receipt-head">
+          <div class="check">✓</div>
+          <h3 style="font-family:var(--font-display);">Pembayaran Berhasil</h3>
+          <p style="color:var(--muted);font-size:.85rem;margin-top:4px;">No. Transaksi: <span id="st-trx"></span></p>
+        </div>
+        <div class="receipt-body">
+          <div class="receipt-row"><span>Item</span><span id="st-item"></span></div>
+          <div class="receipt-row"><span>Penyewa</span><span id="st-nama"></span></div>
+          <div class="receipt-row"><span>Tanggal Ambil</span><span id="st-tanggal"></span></div>
+          <div class="receipt-row"><span>Detail</span><span id="st-detail"></span></div>
+          <div class="receipt-row"><span>Periode Sewa</span><span id="st-periode"></span></div>
+          <div class="receipt-row"><span>Metode</span><span id="st-metode"></span></div>
+          <div class="receipt-row"><span>Total Bayar</span><span id="st-total"></span></div>
+        </div>
+        <div class="receipt-barcode">
+          <svg id="barcode"></svg>
+          <p class="receipt-code" id="st-code"></p>
+        </div>
+        <div class="receipt-actions">
+          <button id="download-pdf" class="btn btn-primary btn-block">Unduh PDF</button>
+          <button type="button" id="to-tiket-btn" class="btn btn-outline btn-block">Lihat Tiket Saya</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TIKET SAYA ===== -->
+  <section class="page" id="page-tiket">
+    <div class="container" style="padding-top:32px;padding-bottom:60px;">
+      <h2 class="section-title">Tiket Saya</h2>
+      <p style="color:var(--muted);margin-top:-14px;margin-bottom:26px;font-size:.9rem;">Semua bukti booking yang sudah dibayar tersimpan di sini, lengkap dengan kode booking.</p>
+
+      <div id="ticket-list" class="ticket-list"></div>
+      <div id="ticket-empty" class="ticket-empty" style="display:none;">
+        <p>Belum ada tiket. Yuk sewa perlengkapan pendakianmu dulu.</p>
+        <button type="button" class="btn btn-primary" style="margin-top:14px;" data-nav="katalog">Lihat Katalog</button>
+      </div>
+
+      <div id="ticket-detail" class="ticket-detail-overlay" style="display:none;">
+        <div class="ticket-detail-card">
+          <button id="close-detail" class="ticket-close">✕</button>
+          <div class="gateway-badge"><span class="dot"></span> Diverifikasi oleh SecurePay Gateway</div>
+          <div class="receipt">
+            <div class="receipt-head">
+              <div class="check">✓</div>
+              <h3 style="font-family:var(--font-display);">Pembayaran Berhasil</h3>
+              <p style="color:var(--muted);font-size:.85rem;margin-top:4px;">Kode Booking: <span id="d-trx"></span></p>
+            </div>
+            <div class="receipt-body">
+              <div class="receipt-row"><span>Item</span><span id="d-item"></span></div>
+              <div class="receipt-row"><span>Penyewa</span><span id="d-nama"></span></div>
+              <div class="receipt-row"><span>Tanggal Ambil</span><span id="d-tanggal"></span></div>
+              <div class="receipt-row"><span>Detail</span><span id="d-detail"></span></div>
+              <div class="receipt-row"><span>Periode Sewa</span><span id="d-periode"></span></div>
+              <div class="receipt-row"><span>Metode</span><span id="d-metode"></span></div>
+              <div class="receipt-row"><span>Total Bayar</span><span id="d-total"></span></div>
+            </div>
+            <div class="receipt-barcode">
+              <svg id="d-barcode"></svg>
+              <p class="receipt-code" id="d-code"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>© Climbora — Sewa Alat Pendakian. Semua unit diperiksa sebelum & sesudah pemakaian.</footer>
+  </section>
+
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/JsBarcode/3.11.5/JsBarcode.all.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="js/script.js?v=11"></script>
+</body>
+</html>
